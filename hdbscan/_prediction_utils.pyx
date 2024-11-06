@@ -109,7 +109,7 @@ cpdef np.ndarray[np.float64_t, ndim=2] all_points_dist_membership_vector(
     result = np.empty((all_points.shape[0], len(exemplars_list)),
                       dtype=np.float64)
 
-    for i in tqdm(range(all_points.shape[0])):
+    for i in tqdm(range(all_points.shape[0]), mininterval=10):
         result[i] = dist_membership_vector(all_points[i],
                                            exemplars_list,
                                            dist_metric,
@@ -305,7 +305,7 @@ cpdef np.ndarray[np.float64_t, ndim=2] all_points_per_cluster_scores(
 
     point_tree = tree[tree['child_size'] == 1]
 
-    for i in tqdm(range(point_tree.shape[0])):
+    for i in tqdm(range(point_tree.shape[0]), mininterval=10):
         point_row = point_tree[i]
         point = point_row['child']
         point_cluster = point_row['parent']
@@ -369,7 +369,7 @@ cpdef all_points_prob_in_some_cluster(
 
     point_tree = tree[tree['child_size'] == 1]
 
-    for i in tqdm(range(point_tree.shape[0])):
+    for i in tqdm(range(point_tree.shape[0]), mininterval=10):
         point_row = point_tree[i]
         point = point_row['child']
         point_cluster = point_row['parent']
